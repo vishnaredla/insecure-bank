@@ -42,6 +42,16 @@ jobs:
         echo "DAST: ${{steps.prescription.outputs.dastScan}}"
     
     # Please note that the ID in previous step was set to prescription
+    # in order for this logic to work also make sure that POLARIS_ACCESS_TOKEN
+    # is defined in settings
+    - name: Static Analysis with Polaris
+      if: ${{steps.prescription.outputs.sastScan == 'true'}}
+      run: |
+            wget -q $${{ secrets.POLARIS_SERVER_URL}}/api/tools/polaris_cli-linux64.zip
+            unzip -j polaris_cli-linux64.zip -d /tmp
+            /tmp/polaris analyze -w
+    
+    # Please note that the ID in previous step was set to prescription
     # in order for this logic to work
     - name: Software Composition Analysis with Black Duck
       if: ${{steps.prescription.outputs.scaScan == 'true' }}
