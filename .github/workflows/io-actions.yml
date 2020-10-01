@@ -40,18 +40,14 @@ jobs:
         echo "SAST: ${{steps.prescription.outputs.sastScan}}"
         echo "SCA:  ${{steps.prescription.outputs.scaScan}}"
         echo "DAST: ${{steps.prescription.outputs.dastScan}}"
-      
-    - name: Coverity on Polaris
-      if: ${{steps.prescription.outputs.sastScan == 'true'}}
-      uses: blackducksoftware/github-action@v2
-      with:
-        args: '--polaris.url="${{secrets.POLARIS_URL}}" --polaris.access.token="${{secrets.POLARIS_TOKEN}}" --detect.tools="POLARIS"'
     
-    - name: Synopsys Detect
+    # Please note that the ID in previous step was set to prescription
+    # in order for this logic to work
+    - name: Software Composition Analysis with Black Duck
       if: ${{steps.prescription.outputs.scaScan == 'true' }}
       uses: blackducksoftware/github-action@v2
       with:
-        args: '--blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN}}" --detect.risk.report.pdf=true'
+        args: '--blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_TOKEN}}" --detect.tools="DETECTOR"'
     
     - name: Synopsys Intelligent Security Scan
       uses: synopsys-sig/intelligent-security-scan@v1
