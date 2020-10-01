@@ -46,10 +46,9 @@ jobs:
     # is defined in settings
     - name: Static Analysis with Polaris
       if: ${{steps.prescription.outputs.sastScan == 'true'}}
-      run: |
-            wget -q ${{secrets.POLARIS_SERVER_URL}}/api/tools/polaris_cli-linux64.zip
-            unzip -j polaris_cli-linux64.zip -d /tmp
-            /tmp/polaris analyze -w
+      uses: blackducksoftware/github-action@v2
+      with:
+        args: '--polaris.url="${{secrets.POLARIS_SERVER_URL}}" --polaris.access.token="${{secrets.POLARIS_ACCESS_TOKEN}}" --detect.tools="POLARIS"'
     
     # Please note that the ID in previous step was set to prescription
     # in order for this logic to work
