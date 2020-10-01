@@ -1,0 +1,17 @@
+version: "1"
+install:
+  coverity:
+    version: latest
+project:
+  name: "SIG Insecure Bank - SSDC"
+  branch: "origin/master"
+  revision:
+    name: "insecure-bank-ssdc"
+    date: "2020-08-18T14:25:30Z"
+  captureDir: .synopsys/polaris
+capture:
+  coverity:
+    buildless:
+      project:
+        languages:
+          - "java"

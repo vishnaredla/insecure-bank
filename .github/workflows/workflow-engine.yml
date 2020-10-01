@@ -1,0 +1,69 @@
+name: "Synopsys Intelligent Security Scan"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        # We must fetch at least the immediate parents so that if this is
+        # a pull request then we can checkout the head.
+        fetch-depth: 2
+
+    # If this run was triggered by a pull request event, then checkout
+    # the head of the pull request instead of the merge commit.
+    - run: git checkout HEAD^2
+      if: ${{ github.event_name == 'pull_request' }}
+      
+    - name: Synopsys Intelligent Security Scan
+      id: prescription
+      uses: synopsys-sig/intelligent-security-scan@v1
+      with:
+        ioServerHost: "${{secrets.IO_SERVER_HOST}}:${{secrets.IO_SERVER_PORT}}"
+        ioServerToken: ${{secrets.IO_SERVER_TOKEN}}
+        workflowServerToken: ${{secrets.WORKFLOW_SERVER_TOKEN}}
+        additionalWorkflowArgs: ""
+        stage: "IO"
+    
+    # SCANS 
+    - name: Scan Triggers
+      run: |
+        echo "SAST: ${{steps.prescription.outputs.sastScan}}"
+        echo "SCA:  ${{steps.prescription.outputs.scaScan}}"
+        echo "DAST: ${{steps.prescription.outputs.dastScan}}"
+      
+    - name: Coverity on Polaris
+      if: ${{steps.prescription.outputs.sastScan == 'true'}}
+      uses: blackducksoftware/github-action@v2
+      with:
+        args: '--polaris.url="${{secrets.POLARIS_URL}}" --polaris.access.token="${{secrets.POLARIS_TOKEN}}" --detect.tools="POLARIS"'
+    
+    - name: Synopsys Detect
+      if: ${{steps.prescription.outputs.scaScan == 'true' }}
+      uses: blackducksoftware/github-action@v2
+      with:
+        args: '--blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN}}" --detect.risk.report.pdf=true'
+    
+    - name: Synopsys Intelligent Security Scan
+      uses: synopsys-sig/intelligent-security-scan@v1
+      with:
+        ioServerHost: "${{secrets.IO_SERVER_HOST}}:${{secrets.IO_SERVER_PORT}}"
+        ioServerToken: ${{secrets.IO_SERVER_TOKEN}}
+        workflowServerToken: ${{secrets.WORKFLOW_SERVER_TOKEN}}
+        additionalWorkflowArgs: "--slack.token=${{secrets.SLACK_TOKEN}} --IS_SAST_ENABLED=${{steps.prescription.outputs.sastScan}} --polaris.url=${{secrets.POLARIS_URL}} --polaris.access.token=${{secrets.POLARIS_TOKEN}}"
+        stage: "WORKFLOW"
+    
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        # Path to SARIF file relative to the root of the repository
+        sarif_file: workflowengine-results.sarif.json
