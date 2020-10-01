@@ -28,7 +28,7 @@ jobs:
       id: prescription
       uses: synopsys-sig/intelligent-security-scan@v1
       with:
-        ioServerHost: "${{secrets.IO_SERVER_HOST}}:${{secrets.IO_SERVER_PORT}}"
+        ioServerHost: ${{secrets.IO_SERVER_HOST}}
         ioServerToken: ${{secrets.IO_SERVER_TOKEN}}
         workflowServerToken: ${{secrets.WORKFLOW_SERVER_TOKEN}}
         additionalWorkflowArgs: ""
@@ -56,7 +56,7 @@ jobs:
     - name: Synopsys Intelligent Security Scan
       uses: synopsys-sig/intelligent-security-scan@v1
       with:
-        ioServerHost: "${{secrets.IO_SERVER_HOST}}:${{secrets.IO_SERVER_PORT}}"
+        ioServerHost: ${{secrets.IO_SERVER_HOST}}
         ioServerToken: ${{secrets.IO_SERVER_TOKEN}}
         workflowServerToken: ${{secrets.WORKFLOW_SERVER_TOKEN}}
         additionalWorkflowArgs: "--slack.token=${{secrets.SLACK_TOKEN}} --IS_SAST_ENABLED=${{steps.prescription.outputs.sastScan}} --polaris.url=${{secrets.POLARIS_URL}} --polaris.access.token=${{secrets.POLARIS_TOKEN}}"
