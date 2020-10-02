@@ -1,14 +1,33 @@
 ---
 connectors:
+- connector_name: slack
+  fields:
+    channelidentifier: C015LGE7RRQ
+    bearertoken: <<SLACK_TOKEN>>
+- connector_name: jira
+  fields:
+    issuetype: Bug
+    projectkey: STAR
+    assignee: test
+    url: <<JIRA_SERVER_URL>>
+    username: <<JIRA_USERNAME>>
+    authtoken: <<JIRA_AUTH_TOKEN>>
+- connector_name: bitbucket
+  fields:
+    workspace_name: sig-devsecops
+    repository_name: insecure-bank
+    commit_id: <<BITBUCKET_COMMIT_ID>>
+    username: <<BITBUCKET_USERNAME>>
+    app_password: <<BITBUCKET_PASSWORD>>
 - connector_name: github
   fields:
-    file_path: "workflowengine-results.sarif.json"
-    ref: "refs/heads/master"
-    owner_name: rahulguna10
-    repository_name: insecurebank
-    commit_id: {{GITHUB_COMMIT_ID}}
-    username: {{GITHUB_USERNAME}}
-    accesstoken: {{GITHUB_ACCESS_TOKEN}}
+    file_path: workflowengine-results.sarif.json
+    owner_name: sig-devsecops
+    repository_name: insecure-bank
+    ref: refs/heads/master
+    commit_id: <<GITHUB_COMMIT_ID>>
+    username: <<GITHUB_USERNAME>>
+    accesstoken: <<GITHUB_ACCESS_TOKEN>>
 ---
 buildbreaker:
 - activityname: sast
@@ -44,17 +63,17 @@ tool_information:
 - tool_name: coverity
   enabled: false
   fields:
-    file_path: "coverity-results.json"
+    file_path: coverity-results.json
 - tool_name: polaris
-  enabled: {{IS_SAST_ENABLED}}
-  fields:
-    project_name: insecure-bank
-    instance_url: {{POLARIS_SERVER_URL}}
-    auth_token: {{POLARIS_ACCESS_TOKEN}}
-- tool_name: blackduck
-  enabled: {{IS_SCA_ENABLED}}
+  enabled: <<IS_SAST_ENABLED>>
   fields:
     project_name: sig-devsecops/insecure-bank
-    project_version: 1.0.0
-    instance_url: {{BLACKDUCK_SERVER_URL}}
-    auth_token: {{BLACKDUCK_ACCESS_TOKEN}}
+    instance_url: <<POLARIS_SERVER_URL>>
+    auth_token: <<POLARIS_ACCESS_TOKEN>>
+- tool_name: blackduck
+  enabled: <<IS_SCA_ENABLED>>
+  fields:
+    project_name: insecure-bank
+    project_version: 1.0.1
+    instance_url: <<BLACKDUCK_SERVER_URL>>
+    auth_token: <<BLACKDUCK_ACCESS_TOKEN>>
