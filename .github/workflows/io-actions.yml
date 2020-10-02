@@ -41,7 +41,7 @@ jobs:
       if: ${{steps.prescription.outputs.sastScan == 'true' }}
       run: |
           export POLARIS_SERVER_URL=${{ secrets.POLARIS_SERVER_URL}}
-          wget -q POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+          wget -q ${{ secrets.POLARIS_SERVER_URL}}/api/tools/polaris_cli-linux64.zip
           unzip -j polaris_cli-linux64.zip -d /tmp
           /tmp/polaris analyze -w
 
