@@ -48,11 +48,11 @@ jobs:
 
     # Please note that the ID in previous step was set to prescription
     # in order for this logic to work
-#     - name: Software Composition Analysis with Black Duck
-#       if: ${{steps.prescription.outputs.scaScan == 'true' }}
-#       uses: blackducksoftware/github-action@v2
-#       with:
-#         args: '--blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_TOKEN}}" --detect.tools="DETECTOR"'
+    - name: Software Composition Analysis with Black Duck
+      if: ${{steps.prescription.outputs.scaScan == 'true' }}
+      uses: blackducksoftware/github-action@v2
+      with:
+         args: '--blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_TOKEN}}" --detect.tools="DETECTOR"'
     
     - name: Synopsys Intelligent Security Scan
       uses: synopsys-sig/intelligent-security-scan@v1
