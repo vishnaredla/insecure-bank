@@ -26,12 +26,12 @@ jobs:
       
     - name: Synopsys Intelligent Security Scan
       id: prescription
-      uses: synopsys-sig/intelligent-security-scan@v1
+      uses: synopsys-sig/intelligent-security-scan@v1-beta.2
       with:
         ioServerHost: ${{secrets.IO_SERVER_HOST}}
         ioServerToken: ${{secrets.IO_SERVER_TOKEN}}
         workflowServerToken: ${{secrets.WORKFLOW_SERVER_TOKEN}}
-        additionalWorkflowArgs: ""
+        additionalWorkflowArgs: "--persona=developer"
         stage: "IO"
     
     # Please note that the ID in previous step was set to prescription
@@ -55,7 +55,7 @@ jobs:
          args: '--blackduck.url="${{ secrets.BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.BLACKDUCK_TOKEN}}" --detect.tools="DETECTOR"'
     
     - name: Synopsys Intelligent Security Scan
-      uses: synopsys-sig/intelligent-security-scan@v1
+      uses: synopsys-sig/intelligent-security-scan@v1-beta.2
       with:
         ioServerHost: ${{secrets.IO_SERVER_HOST}}
         ioServerToken: ${{secrets.IO_SERVER_TOKEN}}

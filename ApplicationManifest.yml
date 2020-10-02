@@ -33,8 +33,8 @@ environment:
     a/StarGaction-master/SecurityManifest.yml +++
     b/StarGaction-master/SecurityManifest.yml @@ -1,3 +1,4 @@ + security:
     pipeline: type: Inline
-  scmOwner: ajith
-  scmRepositoryName: jenkins-sample
+  scmOwner: rahulguna10
+  scmRepositoryName: insecure-bank
   scmBranchName: master
   jiraProjectName: DEM
   jiraIssuesQuery: 'resolution = "Unresolved" AND labels in (Security, Defect)'
