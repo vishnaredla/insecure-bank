@@ -1,6 +1,6 @@
 application:
-  appId: jenkinssample
-  assetId: jenkinssample
+  appId: insecure-bank
+  assetId: insecure-bank
   sdlcType: EDM
   appType: Webapp
   webservice: false
