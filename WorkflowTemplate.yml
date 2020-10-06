@@ -52,12 +52,12 @@ buildbreaker:
     severity: medium
 - activityname: sca
   status:
-  - new
+  - NEW
   overallseverity:
-  - high
+  - HIGH
   categories:
   - name: cve-2015-2119
-    severity: medium
+    severity: MEDIUM
 ---
 tool_information:
 - tool_name: coverity
