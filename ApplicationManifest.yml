@@ -3,7 +3,7 @@ application:
   assetId: insecure-bank
   sdlcType: EDM
   appType: Webapp
-  webservice: false
+  webservice: true
   restApi: true
   microservice: false
   projectLanguage: Java
