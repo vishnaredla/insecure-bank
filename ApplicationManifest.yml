@@ -13,31 +13,15 @@ application:
   sourceFilePattern: .*\\+\\+\\+.*(\\.java|\\.jsp)+.*
   sensitivePackagePattern: .*(\\+\\+\\+.*(com\\/synopsys\\/app)).*
   fileChangeThreshold: 20
-  release: major
+  release: minor
 environment:
   scm: external
-  codePatch: >
-    commit c29461523889a2cf46fe579d6f18ea3f127fd068 (HEAD -> master) Author:
-    ajithjunneti <junnetiajith@gmail.com> Date:   Fri Sep 11 14:43:10 2020 -0400
-    fixed yaml safe load 2 files changed, 3 insertions(+), 1 deletion(-)
-    diff --git a/StarGaction-master/ApplicationManifest.yml
-    b/StarGaction-master/ApplicationManifest.yml index dce25d0..d881f3b 100644 ---
-    a/StarGaction-master/ApplicationManifest.yml +++
-    b/StarGaction-master/ApplicationManifest.yml @@ -33,4 +33,5 @@ environment:
-    jiraIssuesQuery: 'resolution = "Unresolved" AND labels in (Security, Defect)'
-    jiraApiUrl: 'https://demo-sig-jira.atlassian.net/rest/api/latest/'
-    jiraUserName: skokil@synopsys.com -  jiraAuthToken: CGdI09hLOMzzTssfoAWc0F90 
-    No newline at end of file +  jiraAuthToken: CGdI09hLOMzzTssfoAWc0F90 +  No
-    newline at end of file diff --git a/StarGaction-master/SecurityManifest.yml
-    b/StarGaction-master/SecurityManifest.yml index a798e0f..14b05c8 100644 ---
-    a/StarGaction-master/SecurityManifest.yml +++
-    b/StarGaction-master/SecurityManifest.yml @@ -1,3 +1,4 @@ + security:
-    pipeline: type: Inline
+  codePatch: ""
   scmOwner: rahulguna10
   scmRepositoryName: insecure-bank
   scmBranchName: master
-  jiraProjectName: DEM
-  jiraIssuesQuery: 'resolution = "Unresolved" AND labels in (Security, Defect)'
-  jiraApiUrl: 'https://demo-sig-jira.atlassian.net/rest/api/latest/'
-  jiraUserName: skokil@synopsys.com
-  jiraAuthToken: CGdI09hLOMzzTssfoAWc0F90
+  jiraProjectName: ""
+  jiraIssuesQuery: ""
+  jiraApiUrl: ""
+  jiraUserName: ""
+  jiraAuthToken: ""
