@@ -40,6 +40,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		String username = authentication.getName();
 		String password = (String) authentication.getCredentials();
+		System.out.println("Password" + password);
 
 		List<Account> listAccounts = new ArrayList<>();
 		try {
