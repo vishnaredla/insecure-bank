@@ -40,7 +40,7 @@ buildbreaker:
   - name: Stored Cross-site Scripting(XSS)
     severity: medium
   - name: sql-injection
-    severity: low
+    severity: high
 - activityname: dast
   status:
   - new
