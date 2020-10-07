@@ -37,9 +37,9 @@ buildbreaker:
   overallseverity:
   - medium
   categories:
-  - name: Stored Cross-site Scripting(XSS)
-    severity: medium
-  - name: sql-injection
+  - name: Cross-site scripting
+    severity: high
+  - name: SQL injection
     severity: high
 - activityname: dast
   status:
