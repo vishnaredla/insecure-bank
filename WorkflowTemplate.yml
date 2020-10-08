@@ -35,7 +35,7 @@ buildbreaker:
   - new
   - open
   overallseverity:
-  - medium
+  - high
   categories:
   - name: Cross-site scripting
     severity: high
