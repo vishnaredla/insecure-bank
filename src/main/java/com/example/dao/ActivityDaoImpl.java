@@ -22,6 +22,14 @@ public class ActivityDaoImpl implements ActivityDao {
 		List<Transaction> customers = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Transaction.class));
 		return customers;
 	}
+	
+	@Override
+	public List<Transaction> findTransactionsByCustomerName(final String customerName) {
+		String sql = "SELECT * FROM transaction WHERE customerName = '" + customerName + "'";
+
+		List<Transaction> customers = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Transaction.class));
+		return customers;
+	}	
 
 	@Override
 	public void insertNewActivity(final Date date, final String description, final String number, final double amount,
