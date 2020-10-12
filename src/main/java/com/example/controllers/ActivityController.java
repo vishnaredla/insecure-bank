@@ -71,7 +71,7 @@ public class ActivityController {
 		List<CashAccount> cashAccounts = cashaccountDao.findCashAccountsByUsername(principal.getName());
 
 		List<Transaction> firstCashAccountTransfers = activityDao.findTransactionsByCashAccountNumber(number);
-		List<Transaction> firstCashAccountCustomerName = activityDao.findTransactionsByCustomerName(number);
+		//List<Transaction> firstCashAccountCustomerName = activityDao.findTransactionsByCustomerName(number);
 		List<Transaction> reverseFirstCashAccountTransfers = Lists.reverse(firstCashAccountTransfers);
 
 		model.addAttribute("account", account);
