@@ -6,10 +6,10 @@ security:
   activities:
     sast:
       enabled: false
-      rescanThreshold: 0
+      rescanThreshold: 1
     sca:
       enabled: false
-      rescanThreshold: 10
+      rescanThreshold: 5
     dast:
       enabled: false
       rescanThreshold: 10
