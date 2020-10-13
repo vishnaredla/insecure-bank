@@ -13,7 +13,7 @@ application:
   sourceFilePattern: .*\\+\\+\\+.*(\\.java|\\.jsp)+.*
   sensitivePackagePattern: .*(\\+\\+\\+.*(com\\/synopsys\\/app)).*
   fileChangeThreshold: 20
-  release: major
+  release: minor
 environment:
   scm: github
   scmOwner: rahulguna10
