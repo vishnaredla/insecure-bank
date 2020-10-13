@@ -19,6 +19,7 @@ environment:
   scmOwner: rahulguna10
   scmRepositoryName: insecure-bank
   scmBranchName: master
+  githubApiUrl: https://api.github.com/repos/
   jiraProjectName: <<JIRA_PROJECT_NAME>>
   jiraIssuesQuery: <<JIRA_ISSUES_QUERY>>
   jiraApiUrl: <<JIRA_API_URL>>
