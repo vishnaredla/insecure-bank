@@ -15,13 +15,12 @@ application:
   fileChangeThreshold: 20
   release: major
 environment:
-  scm: external
-  codePatch: ""
+  scm: github
   scmOwner: rahulguna10
   scmRepositoryName: insecure-bank
   scmBranchName: master
-  jiraProjectName: ""
-  jiraIssuesQuery: ""
-  jiraApiUrl: ""
-  jiraUserName: ""
-  jiraAuthToken: ""
+  jiraProjectName: <<JIRA_PROJECT_NAME>>
+  jiraIssuesQuery: <<JIRA_ISSUES_QUERY>>
+  jiraApiUrl: <<JIRA_API_URL>>
+  jiraUserName: <<JIRA_USERNAME>>
+  jiraAuthToken: <<JIRA_AUTH_TOKEN>>
