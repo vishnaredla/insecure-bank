@@ -35,7 +35,7 @@ public class ActivityDaoImpl implements ActivityDao {
 	public void insertNewActivity(final Date date, final String description, final String number, final double amount,
 			final double availablebalance) {
 
-		try {
+		try { 
 			String sql = "INSERT INTO transaction " + "(date, description, number, amount, availablebalance) VALUES (?, ?, ?, ?, ?)";
 
 			jdbcTemplate.update(sql, new Object[] { date, description, number, amount, availablebalance, });
