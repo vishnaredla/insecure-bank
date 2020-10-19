@@ -10,12 +10,4 @@ security:
     sca:
       enabled: false
       rescanThreshold: 5
-    dast:
-      enabled: false
-      rescanThreshold: 10
-    sastplusm:
-      rescanThreshold: 30
-    dastplusm:
-      rescanThreshold: 30
-    imageScan:
-      rescanThreshold: 10
+    
