@@ -144,7 +144,8 @@ public class DashboardController {
 		ois.readObject();
 		ois.close();
 
-		return "<p>File '" + file.getOriginalFilename() + "' uploaded successfully</p>";
+		//return "<p>File '" + file.getOriginalFilename() + "' uploaded successfully</p>";
+		return "File uploaded successfully";
 	}
 
 	@RequestMapping(value = "/userDetail/maliciouscertificate", method = RequestMethod.POST)
