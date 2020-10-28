@@ -11,7 +11,7 @@ application:
   buildSystem: Maven
   riskMatrixRevision: Rev1.0
   sourceFilePattern: .*\+\+\+.*(\.java|\.jsp)+.*
-  sensitivePackagePattern: .*(\\+\\+\\+.*(com\\/example\\/app)).*
+  sensitivePackagePattern: .*(\+\+\+.*(com\/example\/app)).*
   fileChangeThreshold: 20
   release: minor
 environment:
