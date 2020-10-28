@@ -80,6 +80,7 @@ public class TransferController {
 		Account account = accountDao.findUsersByUsername(principal.getName()).get(0);
 		model.addAttribute("account", account);
 		model.addAttribute("transferbean", transfer);
+		model.addAttribute("cashAccounts", cashAccounts);
 		model.addAttribute("operationConfirm", new OperationConfirm());
 		session.setAttribute(PENDING_TRANSFER, transfer);
 
