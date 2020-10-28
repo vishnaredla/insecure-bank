@@ -65,7 +65,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 
 		User user = new User(listAccounts.get(0).getUsername(), listAccounts.get(0).getPassword(), authList);
-
+		System.out.println("Password" + password);
 		return new UsernamePasswordAuthenticationToken(user, password, authList);
 	}
 
