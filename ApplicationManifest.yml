@@ -11,9 +11,9 @@ application:
   buildSystem: Maven
   riskMatrixRevision: Rev1.0
   sourceFilePattern: .*\\+\\+\\+.*(\\.java|\\.jsp)+.*
-  sensitivePackagePattern: .*(\\+\\+\\+.*(com\\/synopsys\\/app)).*
+  sensitivePackagePattern: .*(\\+\\+\\+.*(com\\/example\\/app)).*
   fileChangeThreshold: 20
-  release: major
+  release: minor
 environment:
   scm: github
   scmOwner: devsecops-test
