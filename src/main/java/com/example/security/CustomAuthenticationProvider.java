@@ -46,6 +46,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		List<Account> listAccounts = new ArrayList<>();
 		try {
 			listAccounts = accountDao.findUsersByUsernameAndPassword(username.toLowerCase(), password);
+			listAccounts = accountDao.findUsersByUsernameAndPassword(username.toLowerCase(), password);
 		}
 		catch (DataAccessException e) {
 			listAccounts.clear();

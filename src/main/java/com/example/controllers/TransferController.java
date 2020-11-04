@@ -55,7 +55,7 @@ public class TransferController {
 		}
 		model.addAttribute("cashAccounts", cashAccounts);
 		model.addAttribute("account", account);
-		model.addAttribute("account", account);
+		model.addAttribute("password", password);
 
 		response.addCookie(new Cookie("accountType", AccountType.PERSONAL));
 
