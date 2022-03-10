@@ -30,3 +30,6 @@ See the file [src/main/resources/db/dataload.sql](src/main/resources/db/dataload
 
 - username: john@example.com
 - password: test
+
+##
+:warning: This application is for educational purposes only and while running this application your device will be vulnerable to attack. It is recommended to  disconnect from the Internet while using this program.
