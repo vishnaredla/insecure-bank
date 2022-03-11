@@ -55,7 +55,6 @@ public class TransferController {
 		}
 		model.addAttribute("cashAccounts", cashAccounts);
 		model.addAttribute("account", account);
-		model.addAttribute("password", password);
 
 		response.addCookie(new Cookie("accountType", AccountType.PERSONAL));
 
@@ -80,7 +79,6 @@ public class TransferController {
 		Account account = accountDao.findUsersByUsername(principal.getName()).get(0);
 		model.addAttribute("account", account);
 		model.addAttribute("transferbean", transfer);
-		model.addAttribute("cashAccounts", cashAccounts);
 		model.addAttribute("operationConfirm", new OperationConfirm());
 		session.setAttribute(PENDING_TRANSFER, transfer);
 
@@ -130,7 +128,7 @@ public class TransferController {
 		session.removeAttribute(PENDING_TRANSFER);
 
 		if ("confirm".equals(operationConfirm.getAction()) && transfer != null) {
-			return transferConfirmation(transfer, model, principal, accountType); 
+			return transferConfirmation(transfer, model, principal, accountType);
 		}
 		else {
 			return "redirect:/transfer";
