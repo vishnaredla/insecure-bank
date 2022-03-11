@@ -115,6 +115,67 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			<!-- SpotBugs Static Analysis -->
+			<plugin>
+			    <groupId>com.github.spotbugs</groupId>
+			    <artifactId>spotbugs-maven-plugin</artifactId>
+			    <version>3.1.1</version>
+			    <configuration>
+				<effort>Max</effort>
+				<threshold>Low</threshold>
+				<failOnError>true</failOnError>
+				<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
+				<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
+				<plugins>
+				    <plugin>
+					<groupId>com.h3xstream.findsecbugs</groupId>
+					<artifactId>findsecbugs-plugin</artifactId>
+					<version>LATEST</version> <!-- Auto-update to the latest stable -->
+				    </plugin>
+				</plugins>
+			    </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.3.3</version>
+				<configuration>
+					<container>
+						<containerId>tomcat7x</containerId>
+						<zipUrlInstaller>
+							<url>https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.85/bin/apache-tomcat-7.0.85.zip</url>
+						</zipUrlInstaller>
+					</container>
+					<deployables>
+						<deployable>
+							<type>war</type>
+							<properties>
+								<context>/insecure-bank</context>
+							</properties>
+						</deployable>
+					</deployables>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<configuration>
+								<properties>
+									<cargo.jvmargs>
+										<!-- Hdiv JVM arguments -->
+									</cargo.jvmargs>
+									<cargo.servlet.port>8080</cargo.servlet.port>
+									<cargo.tomcat.ajp.port>8009</cargo.tomcat.ajp.port>
+									<cargo.rmi.port>8205</cargo.rmi.port>
+								</properties>
+							</configuration>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<finalName>insecure-bank</finalName>
 	</build>
@@ -240,27 +301,32 @@
 		</dependency>
 		
 		<!-- JAXB and Activation added for Java 9 compatibility.
-             The JAXB API is considered to be Java EE API and therefore is
-             no longer contained on the default class path in Java SE 9 -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>${activation.version}</version>
-        </dependency>
+	     	The JAXB API is considered to be Java EE API and therefore is
+	     	no longer contained on the default class path in Java SE 9 -->
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-core</artifactId>
+		    <version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-impl</artifactId>
+		    <version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.activation</groupId>
+		    <artifactId>activation</artifactId>
+		    <version>${activation.version}</version>
+		</dependency>
+		<dependency>
+    			<groupId>com.fasterxml.jackson.core</groupId>
+    			<artifactId>jackson-core</artifactId>
+			<version>2.9.10</version>
+		</dependency>
 	</dependencies>
 </project>
