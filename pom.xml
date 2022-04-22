@@ -12,7 +12,7 @@
 		<org.spring-security-version>4.0.3.RELEASE</org.spring-security-version>
 		<org.slf4j-version>1.7.13</org.slf4j-version>
 		<jaxb.version>2.3.0</jaxb.version>
-        <activation.version>1.1.1</activation.version>
+		<activation.version>1.1.1</activation.version>
 		<version.wildfly.maven.plugin>2.0.0.Final</version.wildfly.maven.plugin>
 		<version.org.wildfly.checkstyle-config>1.0.7.Final</version.org.wildfly.checkstyle-config>
 		<version.org.wildfly.quickstarts.documentation.plugin>2.0.0.Final</version.org.wildfly.quickstarts.documentation.plugin>
